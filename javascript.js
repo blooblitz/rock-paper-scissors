@@ -1,12 +1,46 @@
-/*
-let playerSelection, computerSelection;
-computerSelection = getComputerChoice();
-// continue to prompt for a selection until a valid choice is entered
-while (!playerSelection) {
-    playerSelection = getPlayerChoice();
+game();
+
+/* Main game function */
+function game(){
+    let playerSelection, computerSelection, roundResult, playerScore, computerScore;
+    playerScore = 0, computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        // continue to prompt for a selection until a valid choice is entered
+        computerSelection = getComputerChoice();
+        playerSelection = getPlayerChoice();
+        
+        while (!playerSelection) {
+            playerSelection = getPlayerChoice();
+        }
+        //play round
+        roundResult = playRound(playerSelection, computerSelection);
+        if (roundResult === 0) {
+            computerScore += 1;
+        }
+        else if (roundResult === 1) {
+            playerScore += 1;
+        }
+    }
+    //print result to console.
+    printResult(playerScore, computerScore);
 }
-playRound(playerSelection, computerSelection);
+
+/* <summary>
+        Prints game summary to console
+    </summary>
+    <returns>
+        String announcing game result and the scores.
+    </returns
 */
+function printResult(playerScore, computerScore) {
+    console.log("-- Game over! --");
+    if (playerScore > computerScore) console.log("Player Wins!");
+    else if (playerScore < computerScore) console.log("Computer Wins!");
+    else console.log("Tie!");
+    console.log("Player won " + playerScore + " rounds");
+    console.log("Computer won " + computerScore + " rounds");
+}
 
 /* <summary>
         Randomly assigns a choice to the computer
@@ -44,42 +78,51 @@ function getPlayerChoice() {
         Plays a round of "Rock-Paper-Scissors"
     </summary>
     <returns>
+    An integer representing the round result. 0 indicates a lose, 1 indicates a win, and 2 indicates a tie.
     </returns
 */
 function playRound(playerSelection, computerSelection) {
     //TIE!
     if (playerSelection === computerSelection) {
-        return "It's a tie!";
+        console.log("It's a tie!");
+        return 2;
     }
     //console.log(playerSelection + " " + computerSelection);
     //Player beats computer
     switch (playerSelection) {
         case "rock":
             if (computerSelection === "scissors") {
-                return "You win! Rock beats Scissors.";
+                console.log("You win! Rock beats Scissors.");
+                return 1;
             }
             else {
-                return "You lose! Paper beats Rock.";
+                console.log("You lose! Paper beats Rock.");
+                return 0;
             }
             break;
         case "paper":
             if (computerSelection === "rock") {
-                return "You win! Paper beats Rock.";
+                console.log("You win! Paper beats Rock.");
+                return 1;
             }
             else {
-                return "You lose! Scissors beats Paper.";
+                console.log("You lose! Scissors beats Paper.");
+                return 0;
             }
             break;
         case "scissors":
             if (computerSelection === "paper") {
-                return "You win! Scissors beats Paper.";
+                console.log("You win! Scissors beats Paper.");
+                return 1;
             }
             else {
-                return "You lose! Rock beats Scissors";
+                console.log("You lose! Rock beats Scissors");
+                return 0;
             }
             break;
         default:
-            console.log("Uh oh, you shouldn't be here. THere's been an error.")
-            
+            console.log("Uh oh, you shouldn't be here. There's been an error.")
+            return null;
     }
 }
+
