@@ -1,4 +1,7 @@
-game();
+const btns = document.querySelectorAll('#gameBtns > button');
+btns.forEach(btn => btn.addEventListener('click', playRound));
+
+//game();
 
 /* Main game function */
 function game(){
@@ -78,7 +81,11 @@ function getPlayerChoice() {
     An integer representing the round result. 0 indicates a lose, 1 indicates a win, and 2 indicates a tie.
     </returns
 */
-function playRound(playerSelection, computerSelection) {
+//function playRound(playerSelection, computerSelection) {
+function playRound(e) {
+    let computerSelection = getComputerChoice();
+    let playerSelection = getPlayerChoice();
+
     if (playerSelection === computerSelection) {
         console.log("It's a tie!");
         return 2;
