@@ -6,14 +6,13 @@ function game(){
     playerScore = 0, computerScore = 0;
 
     for (let i = 0; i < 5; i++) {
-        // continue to prompt for a selection until a valid choice is entered
         computerSelection = getComputerChoice();
         playerSelection = getPlayerChoice();
-        
+
         while (!playerSelection) {
             playerSelection = getPlayerChoice();
         }
-        //play round
+
         roundResult = playRound(playerSelection, computerSelection);
         if (roundResult === 0) {
             computerScore += 1;
@@ -22,7 +21,7 @@ function game(){
             playerScore += 1;
         }
     }
-    //print result to console.
+
     printResult(playerScore, computerScore);
 }
 
@@ -65,7 +64,7 @@ function getComputerChoice() {
 */
 function getPlayerChoice() {
     playerSelection = prompt("Rock, paper, or scissors?");
-    playerSelection = playerSelection.trim().toLowerCase(); //strip whitespace and convert to lowercase
+    playerSelection = playerSelection.trim().toLowerCase();
     // check for valid input
     if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
         console.log(playerSelection + " is not a valid choice. Please enter rock, paper, or scissors");
@@ -82,13 +81,10 @@ function getPlayerChoice() {
     </returns
 */
 function playRound(playerSelection, computerSelection) {
-    //TIE!
     if (playerSelection === computerSelection) {
         console.log("It's a tie!");
         return 2;
     }
-    //console.log(playerSelection + " " + computerSelection);
-    //Player beats computer
     switch (playerSelection) {
         case "rock":
             if (computerSelection === "scissors") {
