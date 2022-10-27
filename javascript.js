@@ -5,21 +5,19 @@ function game(){
     let playerSelection, computerSelection, roundResult, playerScore, computerScore;
     playerScore = 0, computerScore = 0;
 
-    for (let i = 0; i < 5; i++) {
-        computerSelection = getComputerChoice();
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice();
+
+    while (!playerSelection) {
         playerSelection = getPlayerChoice();
+    }
 
-        while (!playerSelection) {
-            playerSelection = getPlayerChoice();
-        }
-
-        roundResult = playRound(playerSelection, computerSelection);
-        if (roundResult === 0) {
-            computerScore += 1;
-        }
-        else if (roundResult === 1) {
-            playerScore += 1;
-        }
+    roundResult = playRound(playerSelection, computerSelection);
+    if (roundResult === 0) {
+        computerScore += 1;
+    }
+    else if (roundResult === 1) {
+        playerScore += 1;
     }
 
     printResult(playerScore, computerScore);
