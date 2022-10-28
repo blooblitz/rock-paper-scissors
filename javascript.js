@@ -1,5 +1,6 @@
 
 let playerScore = 0, computerScore = 0;
+const scoreLimit = 5;
 const btns = document.querySelectorAll('#gameBtns > button');
 btns.forEach(btn => btn.addEventListener('click', playRound));
 const resultMessage = document.querySelector('#result');
@@ -44,6 +45,7 @@ function getComputerChoice() {
         'rock', 'paper', or 'scissors', otherwise undefined if the user input is not valid.
     </returns
 */
+/*
 function getPlayerChoice() {
     playerSelection = prompt("Rock, paper, or scissors?");
     playerSelection = playerSelection.trim().toLowerCase();
@@ -53,6 +55,23 @@ function getPlayerChoice() {
         return;
     }
     return playerSelection;
+}*/
+
+/* 
+    Helper function to convert button id into a player
+    choice.
+*/
+function getPlayerChoice(choice) {
+    switch (choice) {
+        case "btnRock":
+            return "rock";
+        case "btnPaper":
+            return "paper";
+        case "btnScissors":
+            return "scissors";
+        default:
+            return "ERROR";
+    }
 }
 
 /* <summary>
@@ -64,25 +83,11 @@ function getPlayerChoice() {
 */
 //function playRound(playerSelection, computerSelection) {
 function playRound(e) {
-    if (playerScore >= 5 || computerScore >= 5) {
+    if (playerScore >= scoreLimit || computerScore >= scoreLimit) {
         return;
     }
-
-    let playerSelection;
-    switch (e.target.id) {
-        case "btnRock":
-            playerSelection = "rock";
-            break;
-        case "btnPaper":
-            playerSelection = "paper";
-            break;
-        case "btnScissors":
-            playerSelection = "scissors";
-            break;
-        default:
-            playerSelection = "ERROR";
-    }
     
+    let playerSelection = getPlayerChoice(e.target.id);
     let computerSelection = getComputerChoice();
 
     if (playerSelection === computerSelection) {
@@ -139,5 +144,9 @@ function playRound(e) {
 
 function announceWinner(winner){
     alert("GAME OVER: " + winner + " wins!");
+}
+
+function addResetBtn(){
+
 }
 
