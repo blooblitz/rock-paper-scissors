@@ -1,0 +1,56 @@
+#main-wrapper, html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: rgb(44,53,82);
+    background: -moz-linear-gradient(0deg, rgba(44,53,82,1) 0%, rgba(48,3,80,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(44,53,82,1) 0%, rgba(48,3,80,1) 100%);
+    background: linear-gradient(0deg, rgba(44,53,82,1) 0%, rgba(48,3,80,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2c3552",endColorstr="#300350",GradientType=1); 
+}
+
+
+#header {
+    width: 100%;
+    height: 50px;
+    background-color: #0c1e3e;
+    /*background-color: #563536;*/
+}
+
+#display {
+    /*background-color: white;*/
+    height: 300px;
+    width: 100%;
+    
+}
+
+#messageBoard {
+
+}
+
+#results {
+
+}
+
+#score {
+
+}
+
+#gameBtns {
+    display: flex;
+}
+
+#gameBtns > button {
+    font-size: 2em;
+    height: 50px;
+    width: 150px;
+    margin: 10px;
+    border-radius: 12px;
+    background-color: #f8f6f2;
+}

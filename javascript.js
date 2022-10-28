@@ -1,30 +1,11 @@
+
+let playerScore = 0, computerScore = 0;
 const btns = document.querySelectorAll('#gameBtns > button');
 btns.forEach(btn => btn.addEventListener('click', playRound));
+const resultMessage = document.querySelector('#result');
+const scoreMessage = document.querySelector('#score');
+scoreMessage.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
 
-//game();
-
-/* Main game function */
-function game(){
-    let playerSelection, computerSelection, roundResult, playerScore, computerScore;
-    playerScore = 0, computerScore = 0;
-
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoice();
-
-    while (!playerSelection) {
-        playerSelection = getPlayerChoice();
-    }
-
-    roundResult = playRound(playerSelection, computerSelection);
-    if (roundResult === 0) {
-        computerScore += 1;
-    }
-    else if (roundResult === 1) {
-        playerScore += 1;
-    }
-
-    printResult(playerScore, computerScore);
-}
 
 /* <summary>
         Prints game summary to console
@@ -83,47 +64,80 @@ function getPlayerChoice() {
 */
 //function playRound(playerSelection, computerSelection) {
 function playRound(e) {
+    if (playerScore >= 5 || computerScore >= 5) {
+        return;
+    }
+
+    let playerSelection;
+    switch (e.target.id) {
+        case "btnRock":
+            playerSelection = "rock";
+            break;
+        case "btnPaper":
+            playerSelection = "paper";
+            break;
+        case "btnScissors":
+            playerSelection = "scissors";
+            break;
+        default:
+            playerSelection = "ERROR";
+    }
+    
     let computerSelection = getComputerChoice();
-    let playerSelection = getPlayerChoice();
 
     if (playerSelection === computerSelection) {
-        console.log("It's a tie!");
-        return 2;
+        resultMessage.textContent = "It's a tie!";
+        //console.log("It's a tie!");
+        return;
     }
     switch (playerSelection) {
         case "rock":
             if (computerSelection === "scissors") {
-                console.log("You win! Rock beats Scissors.");
-                return 1;
+                resultMessage.textContent = "You win! Rock beats Scissors.";
+                //console.log("You win! Rock beats Scissors.");
+                playerScore = ++playerScore;
             }
             else {
-                console.log("You lose! Paper beats Rock.");
-                return 0;
+                resultMessage.textContent = "You lose! Paper beats Rock.";
+                //console.log("You lose! Paper beats Rock.");
+                computerScore = ++computerScore;
             }
             break;
         case "paper":
             if (computerSelection === "rock") {
-                console.log("You win! Paper beats Rock.");
-                return 1;
+                resultMessage.textContent = "You win! Paper beats Rock.";
+                //console.log("You win! Paper beats Rock.");
+                playerScore = ++playerScore;
             }
             else {
-                console.log("You lose! Scissors beats Paper.");
-                return 0;
+                resultMessage.textContent = "You lose! Scissors beats Paper.";
+                //console.log("You lose! Scissors beats Paper.");
+                computerScore = ++computerScore;
             }
             break;
         case "scissors":
             if (computerSelection === "paper") {
-                console.log("You win! Scissors beats Paper.");
-                return 1;
+                resultMessage.textContent = "You win! Scissors beats Paper.";
+                //console.log("You win! Scissors beats Paper.");
+                playerScore = ++playerScore;
             }
             else {
-                console.log("You lose! Rock beats Scissors");
-                return 0;
+                resultMessage.textContent = "You lose! Rock beats Scissors";
+                //console.log("You lose! Rock beats Scissors");
+                computerScore = ++computerScore;
             }
             break;
         default:
-            console.log("Uh oh, you shouldn't be here. There's been an error.")
-            return null;
+            resultMessage.textContent = "Uh oh, you shouldn't be here. There's been an error.";
+            //console.log("Uh oh, you shouldn't be here. There's been an error.")
     }
+    if (playerScore === 5) announceWinner("Player");
+    else if (computerScore ===5) announceWinner("Computer");
+
+    scoreMessage.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+}
+
+function announceWinner(winner){
+    alert("GAME OVER: " + winner + " wins!");
 }
 
