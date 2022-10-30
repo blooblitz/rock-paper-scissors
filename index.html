@@ -10,35 +10,43 @@
   </head>
   
   <body>
-
     <div id="main-wrapper">
       <div id="header">
 
       </div>
-
       <div id="display">
         <div id="messageBoard">
-          <div id="scoreWrapper">
-
-            <div class="score">2</div>
-            <div class="score">1</div>
+          <div id = scoreAndNameWrapper>
+            <div id="playerNameWrapper">
+              <p>Player</p>
+              <p>Computer</p>
+            </div>
+            <div id="scoreWrapper">
+              <div class="score">0</div>
+              <div class="score">0</div>
+            </div>
           </div>
           <p id="result">Welcome to Rock Paper Scissors</p>
-          <p id="score"></p>
         </div>
-        
         <div id="gameBtns">
           <button id="btnRock">Rock</button>
           <button id="btnPaper">Paper</button>
           <button id="btnScissors">Scissors</button>
         </div>
-
-        <div id="endContainer">
-
-        </div>
       </div>
-
-      
+      <div id="footer">
+        Blooblitz 2022
+      </div>
     </div>
+
+    <div class="modal">
+      <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <h1>GAME OVER!</h1>
+          <button class="reset-game-button">Restart</button>
+      </div>
+    </div>
+
+    <audio id="soundKeyClick" src="/sounds/keyboard-spacebar-hit-101812.mp3"></audio>
   </body>
 </html>

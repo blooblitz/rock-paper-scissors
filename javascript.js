@@ -2,34 +2,24 @@
 let playerScore = 0, computerScore = 0;
 const scoreLimit = 5;
 const btns = document.querySelectorAll('#gameBtns > button');
-btns.forEach(btn => btn.addEventListener('click', playRound));
+//btns.forEach(btn => btn.addEventListener('click', playRound));
+btns.forEach(btn => btn.addEventListener('click', (e) => {
+    playRound(e);
+    playSound();
+}));
 const resultMessage = document.querySelector('#result');
-const scoreMessage = document.querySelector('#score');
-scoreMessage.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+const scoreDisplays = document.querySelector("#scoreWrapper");
 
 
-/* <summary>
-        Prints game summary to console
-    </summary>
-    <returns>
-        String announcing game result and the scores.
-    </returns
-*/
-function printResult(playerScore, computerScore) {
-    console.log("-- Game over! --");
-    if (playerScore > computerScore) console.log("Player Wins!");
-    else if (playerScore < computerScore) console.log("Computer Wins!");
-    else console.log("Tie!");
-    console.log("Player won " + playerScore + " rounds");
-    console.log("Computer won " + computerScore + " rounds");
+function playSound () {
+    const audio = document.querySelector("#soundKeyClick");
+    audio.currentTime = 0.4;
+    audio.play();
+    console.log(audio);
 }
 
-/* <summary>
-        Randomly assigns a choice to the computer
-    </summary>
-    <returns>
-        'rock', 'paper', or 'scissors'
-    </returns
+/*
+    Randomly assigns a choice to the computer
 */
 function getComputerChoice() {
     choice = Math.floor(Math.random() * 3);
@@ -37,25 +27,6 @@ function getComputerChoice() {
     else if (choice === 1) return "paper";
     else return "scissors";
 }
-
-/* <summary>
-        Gets the player choice.
-    </summary>
-    <returns>
-        'rock', 'paper', or 'scissors', otherwise undefined if the user input is not valid.
-    </returns
-*/
-/*
-function getPlayerChoice() {
-    playerSelection = prompt("Rock, paper, or scissors?");
-    playerSelection = playerSelection.trim().toLowerCase();
-    // check for valid input
-    if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-        console.log(playerSelection + " is not a valid choice. Please enter rock, paper, or scissors");
-        return;
-    }
-    return playerSelection;
-}*/
 
 /* 
     Helper function to convert button id into a player
@@ -74,16 +45,12 @@ function getPlayerChoice(choice) {
     }
 }
 
-/* <summary>
-        Plays a round of "Rock-Paper-Scissors"
-    </summary>
-    <returns>
-    An integer representing the round result. 0 indicates a lose, 1 indicates a win, and 2 indicates a tie.
-    </returns
+/*
+    Plays a round of "Rock-Paper-Scissors"
 */
-//function playRound(playerSelection, computerSelection) {
 function playRound(e) {
     if (playerScore >= scoreLimit || computerScore >= scoreLimit) {
+        toggleModal();
         return;
     }
     
@@ -136,17 +103,56 @@ function playRound(e) {
             resultMessage.textContent = "Uh oh, you shouldn't be here. There's been an error.";
             //console.log("Uh oh, you shouldn't be here. There's been an error.")
     }
+
+    // Update Scoreboard
+    scoreDisplays.firstElementChild.textContent = playerScore;
+    scoreDisplays.lastElementChild.textContent = computerScore;
+
     if (playerScore === 5) announceWinner("Player");
     else if (computerScore ===5) announceWinner("Computer");
-
-    scoreMessage.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
 }
 
+/*
+    Toggles a modal announcing the game result, as well as presenting
+    a button that resets the game.
+*/
 function announceWinner(winner){
-    alert("GAME OVER: " + winner + " wins!");
+    toggleModal();
 }
 
-function addResetBtn(){
-
+/*
+    Sets player and computer scores to 0.
+*/
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    resultMessage.textContent = "Welcome to Rock Paper Scissors";
+    scoreDisplays.firstElementChild.textContent = 0;
+    scoreDisplays.lastElementChild.textContent = 0;
 }
+
+/* Modal code */
+const modal = document.querySelector(".modal");
+const trigger = document.querySelector(".trigger");
+const closeButton = document.querySelector(".close-button");
+const resetButton = document.querySelector(".reset-game-button");
+
+function toggleModal() {
+    modal.classList.toggle("show-modal");
+}
+
+function windowOnClick(event) {
+    if (event.target === modal) {
+        toggleModal();
+    }
+}
+
+closeButton.addEventListener("click", toggleModal);
+resetButton.addEventListener("click", () => {
+    resetGame();
+    toggleModal();
+});
+
+window.addEventListener("click", windowOnClick);
+
 

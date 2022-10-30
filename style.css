@@ -7,56 +7,33 @@
     font-style: normal;
 }
 
-@media screen and (max-width: 600px) {
-    #gameBtns > button {
-        font-size: 5vw;
-        width: 25vw;
-    }
-}
-
-@media screen and (max-height: 750px) {
-    #messageBoard {
-        height: 25vh;
-    }
-}
-
-@media screen and (max-height: 500px) {
-    #messageBoard {
-        margin-top: 0;
-        margin-bottom: 0;
-        height: auto;
-        box-shadow: none;
-    }
-}
-  
-
 #main-wrapper, html, body {
-    height: 100%;
     margin: 0;
-    
 }
 
 #main-wrapper {
-    
+
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
-
-    background: rgb(44,53,82);
-    background: -moz-linear-gradient(0deg, rgba(44,53,82,1) 0%, rgba(48,3,80,1) 100%);
-    background: -webkit-linear-gradient(0deg, rgba(44,53,82,1) 0%, rgba(48,3,80,1) 100%);
-    background: linear-gradient(0deg, rgba(44,53,82,1) 0%, rgba(48,3,80,1) 100%);
+    background: rgb(15, 14, 19);
+    /*
+    background: -moz-linear-gradient(0deg, rgba(144, 67, 147,1) 0%, rgba(42, 174, 196,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(144, 67, 147,1) 0%, rgba(42, 174, 196,1) 100%);
+    background: linear-gradient(0deg, rgb(144, 67, 147) 0%, rgb(42, 174, 196) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2c3552",endColorstr="#300350",GradientType=1); 
+    */
+    height: 100vh;
 }
-
 
 #header {
     width: 100%;
     height: 50px;
     background-color: #0c1e3e;
     /*background-color: #563536;*/
+    margin-bottom: 3vh;
 }
 
 #display {
@@ -65,34 +42,82 @@
     align-items: center;
     margin-top: auto;
     margin-bottom: auto;
-    
+    width: 100vw;
 }
 
 #messageBoard {
-    height: 40vh;
+    min-width: 250px;
+    height: 100%;
     width: 80vw;
-    margin-top: -50px;
-    margin-bottom: 50px;
-    border: 2px solid white;
+    margin-bottom: 3vh;
+    text-align: center;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 750px;
+    border-radius: 10px;
+    border: 2px solid rgb(42, 39, 45);
+    /*box-shadow: 0px 0px 20px 10px rgba(193, 21, 190, 0.2);*/
+}
+
+#scoreAndNameWrapper {
+
+}
+
+#playerNameWrapper {
+    display: flex;
+    justify-content:space-between;
+    width: 100%;
+}
+
+#playerNameWrapper > p{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: vt323regular, Monaco, monospace;
+    font-size: 4em;
+    color: yellow;
+    text-shadow: 0px 0px 14px orange;
+    width: 100%;
+}
+
+#playerNameWrapper > p:first-child {
+    margin-left: auto;
+}
+
+#playerNameWrapper > p:last-child {
+    margin-right: auto;
 }
 
 #scoreWrapper {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .score {
-    
     font-family: vt323regular, Monaco, monospace;
+    color: yellow;
     text-align: center;
-    border: 2px solid white;
-    width: 100px;
-    height: 100px;
-    font-size: 5em;
+    /*border: 2px solid pink;*/
+    font-size: 15em;
+    margin-left:50px;
+    margin-right: 50px;
+    text-shadow: 0px 0px 20px orange;
+    
 }
 
-#results {
-
+#result {
+    font-family: vt323regular, Monaco, monospace;
+    font-size: 3em;
+    color: yellow;
+    text-shadow: 0px 0px 10px orange;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-bottom: 10px;
 }
 
 #score {
@@ -105,21 +130,114 @@
     justify-content: center;
     
 }
-
 #gameBtns > button {
     font-weight: bolder;
     font-size: 2em;
     height: 50px;
     width: 150px;
-    margin: 2px;
-    border-radius: 2px;
-    background-color: #f8f6f2;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    background-color: #b3a7ad;
     max-width: 30%;
+    box-shadow: 0 9px #999;
+    
+}
+#gameBtns > button:hover {background-color: #743a5b}
+#gameBtns > button:active {
+    background-color: #743a5b;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
 
-#endContainer {
-    width: 100vw;
-    height: 20vh;
-    /*background-color: blue;*/
+#footer {
+    width: 95%;
+    height: 2em;
+    border-top: 2px solid whitesmoke;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+}
+
+.close-button {
+    align-self: flex-end;
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+}
+
+.reset-game-button {
+    width: 200px;
+    height: 50px;
+}
+
+.close-button:hover {
+    background-color: darkgray;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+
+@media screen and (max-width: 600px) {
+    #gameBtns > button {
+        font-size: 5vw;
+        width: 25vw;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    #result {
+        font-size: 2em;
+    }
+}
+@media screen and (max-height: 310px) {
+#main-wrapper {
+    height: auto;
+}
+}
+
+@media screen and (max-width: 500px), (max-height: 800px){
+    #playerNameWrapper > p {
+        font-size: 2em;
+    }
+    .score {
+        font-size: 4em;
+    }
 }
 

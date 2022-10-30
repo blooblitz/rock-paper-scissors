@@ -8,3 +8,9 @@ https://en.wikipedia.org/wiki/Rock_paper_scissors
 Credits:
 Peter Hull and Jacques Le Bailly for the VT323 font
 https://github.com/phoikoi/VT323
+
+Key Click Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=101812">Pixabay</a>
+
+Success Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6297">Pixabay</a>
+
+Failure Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=7184">Pixabay</a>
