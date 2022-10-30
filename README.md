@@ -5,6 +5,10 @@ For more information about Rock Paper Scissors, see
 https://en.wikipedia.org/wiki/Rock_paper_scissors
 
 
+TODO: Refine UI and graphics, add game start and end sounds, and
+add digit pulsing effect when score changes.
+
+
 Credits:
 Peter Hull and Jacques Le Bailly for the VT323 font
 https://github.com/phoikoi/VT323
